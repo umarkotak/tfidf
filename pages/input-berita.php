@@ -22,47 +22,28 @@
           <?php if (isset($hasil) == false): ?>
             <div class="form-group">
               <label>Judul</label>
-              <input type="text" id="judul" name="judul" class="form-control" placeholder="">
+              <input type="text" id="judul" name="judul" class="form-control" placeholder="" value="suatu judul berita">
             </div>
 
             <div class="row">
               <div class="col-sm-6">
                 <div class="form-group">
                   <label>Sumber</label>
-                  <input type="text" id="sumber" name="sumber" class="form-control" placeholder="Sumber Berita">
+                  <input type="text" id="sumber" name="sumber" class="form-control" placeholder="Sumber Berita" value="radar bogor">
                 </div>
               </div>
 
               <div class="col-sm-6">
                 <div class="form-group">
                   <label>Tahun</label>
-                  <input type="text" id="tahun" name="tahun" class="form-control" placeholder="Tahun Terbit">
-                </div>
-              </div>
-
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <label>Jenis</label>
-                  <select id="jenis" name="jenis" class="form-control">
-                    <option value="csr">CSR</option>
-                    <option value="berita">Berita</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <label>Kategori</label>
-                  <select id="kategori" name="kategori" class="form-control">
-                    <option value="kategori">kategori</option>
-                  </select>
+                  <input type="text" id="tahun" name="tahun" class="form-control" placeholder="Tahun Terbit" value="2018">
                 </div>
               </div>
             </div>
 
             <div class="form-group">
               <label>Teks Berita</label>
-              <textarea id="teks_berita" name="teks_berita" class="form-control" rows="7"></textarea>
+              <textarea id="teks_berita" name="teks_berita" class="form-control" rows="7">pontianak antaranews kalbar bayi bernama zahratussyifa meninggal diduga karena menderita demam berdarah dengue DBD meski sempat dirawat rumah sakit umum daerah rsud sultan syarif muhammad pontianak</textarea>
             </div>
 
             <div class="form-group">

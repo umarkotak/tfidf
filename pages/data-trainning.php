@@ -101,8 +101,13 @@ if (isset($_POST['btn_proses'])) {
               <div class="form-group">
                 <label>Kategori</label>
                 <select id="kategori" name="kategori" class="form-control">
-                  <option value="kategori">kategori</option>
-                  <option value="kategori">kategori</option>
+                  <option value="lingkungan">Lingkungan</option>
+                  <option value="Pendidikan">Pendidikan</option>
+                  <option value="bencana_alam">Bencana Alam</option>
+                  <option value="ekonomi">Ekonomi</option>
+                  <option value="sosial">Sosial</option>
+                  <option value="publik_faisilitas">Publik Fasilitas</option>
+                  <option value="pengetas_kemiskinan">Pengentas Kemiskinan</option>
                 </select>
               </div>
             </div>

@@ -2,8 +2,8 @@
 if (isset($_GET['id'])) {
   $id = $_GET['id'];
 
-  $sql = $conn->prepare("SELECT * FROM data_training ORDER BY id DESC");
-  $data = Array();
+  $sql = $conn->prepare("SELECT * FROM data_training WHERE id=:id");
+  $data = Array(':id' => $id);
   $sql->execute($data);
   $data_training = $sql->fetch();
 }
@@ -45,7 +45,7 @@ if (isset($_POST['btn_update'])) {
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Data-Trainning
+    Edit Data-Trainning
     <small>Laporan CSR</small>
   </h1>
   <ol class="breadcrumb">
@@ -90,7 +90,6 @@ if (isset($_POST['btn_update'])) {
               <div class="form-group">
                 <label>Jenis</label>
                 <select id="jenis" name="jenis" class="form-control">
-                  <option value="<?php echo $data_training['judul'] ?>"><?php echo $data_training['judul'] ?></option>
                   <option value="csr">CSR</option>
                   <option value="berita">Berita</option>
                 </select>
@@ -101,8 +100,14 @@ if (isset($_POST['btn_update'])) {
               <div class="form-group">
                 <label>Kategori</label>
                 <select id="kategori" name="kategori" class="form-control">
-                  <option value="<?php echo $data_training['judul'] ?>"><?php echo $data_training['judul'] ?></option>
-                  <option value="kategori">kategori</option>
+                  <option value="<?php echo $data_training['kategori'] ?>"><?php echo $data_training['kategori'] ?></option>
+                  <option value="lingkungan">Lingkungan</option>
+                  <option value="Pendidikan">Pendidikan</option>
+                  <option value="bencana_alam">Bencana Alam</option>
+                  <option value="ekonomi">Ekonomi</option>
+                  <option value="sosial">Sosial</option>
+                  <option value="publik_faisilitas">Publik Fasilitas</option>
+                  <option value="pengetas_kemiskinan">Pengentas Kemiskinan</option>
                 </select>
               </div>
             </div>
@@ -110,16 +115,12 @@ if (isset($_POST['btn_update'])) {
 
           <div class="form-group">
             <label>Teks Berita</label>
-            <textarea id="teks_berita" name="teks_berita" class="form-control" rows="7">
-              <?php echo $data_training['dokumen'] ?>"
-            </textarea>
+            <textarea id="teks_berita" name="teks_berita" class="form-control" rows="7"><?php echo $data_training['dokumen'] ?></textarea>
           </div>
 
           <div class="form-group">
             <label>Token Berita</label>
-            <textarea id="token_berita" name="token_berita" class="form-control" rows="7">
-              <?php echo $data_training['token'] ?>"
-            </textarea>
+            <textarea id="token_berita" name="token_berita" class="form-control" rows="7"><?php echo $data_training['token'] ?></textarea>
           </div>
 
           <div class="form-group">

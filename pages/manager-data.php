@@ -44,7 +44,7 @@ $datas = $sql->fetchAll();
                 <td><?php echo $data['kategori']; ?></td>
                 <td>
                   <a href="?page=data-trainning-edit&id=<?php echo $data['id']; ?>" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> edit</a>
-                  <a href="?action=delete-data-training&id=<?php echo $data['id']; ?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> delete</a>
+                  <a href="?action=delete-data-training&id=<?php echo $data['id']; ?>" class="btn btn-xs btn-danger" onclick="return confirm('Apakah anda yakin untuk menghapus data ini?');"><i class="fa fa-trash"></i> delete</a>
                 </td>
               </tr>
               <?php endforeach ?>
