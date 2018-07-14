@@ -12,6 +12,7 @@ $datas = $sql->fetchAll();
       <div class="box box-primary">
         <div class="box-header">
           <h3 class="box-title">Manager Data Training</h3>
+          <a href="?page=data-trainning" class="btn btn-success btn-sm pull-right">+</a>
         </div>
 
         <div class="box-body">

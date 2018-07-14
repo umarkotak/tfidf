@@ -18,6 +18,7 @@ if (isset($_POST['btn_proses'])) {
   $hasil_stem = str_replace("]","",$hasil_stem);
   $hasil_stem = str_replace(",","",$hasil_stem);
   $hasil_stem = str_replace("'","",$hasil_stem);
+  $hasil_stem = str_replace("\"","",$hasil_stem);
   $token = $hasil_stem;
 
   try {
@@ -100,6 +101,7 @@ if (isset($_POST['btn_proses'])) {
               <div class="form-group">
                 <label>Kategori</label>
                 <select id="kategori" name="kategori" class="form-control">
+                  <option value="kategori">kategori</option>
                   <option value="kategori">kategori</option>
                 </select>
               </div>
