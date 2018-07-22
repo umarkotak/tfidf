@@ -33,11 +33,11 @@ if (isset($_POST['btn_proses'])) {
       ':kategori' => $kategori
     );
     $sql->execute($data);
-    
+
     $_SESSION['green-notice'] = "Data berhasil disimpan";
     header("location: ?page=data-trainning");
   } catch (Exception $e) {
-    
+
     $_SESSION['red-notice'] = "Terjadi kesalahan " . $e->getMessage();
     header("location: ?page=data-trainning");
   }

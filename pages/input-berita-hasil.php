@@ -294,24 +294,24 @@
             <table class="table table-bordered">
               <tr>
                 <?php $hasil =  array(); ?>
-                <?php $name_fix_kategori = ""; $value_fix_kategori = 0; ?>
+                <?php $name_fix_kategori = ""; $value_kecocokan_berita = 0; ?>
                 <?php foreach ($data_trainings as $key => $data_training): ?>
                   <td>
                     <?php $tmp = ($root_pvs[0]*$root_pvs[$key+1]); ?>
                     <?php $hasil[$key] = $tmp == 0 ? 0 : $sum_wdts[$key+1]/$tmp; ?>
-                    <?php if($hasil[$key] > $value_fix_kategori) { $value_fix_kategori = $hasil[$key]; $name_fix_kategori = $data_training['kategori']; } ?>
+                    <?php if($hasil[$key] > $value_kecocokan_berita) { $value_kecocokan_berita = $hasil[$key]; $name_fix_kategori = $data_training['kategori']; } ?>
                     <span class="badge bg-light-blue"><?php echo $data_training['kategori']." = ".$hasil[$key]; ?></span>
                   </td>
                 <?php endforeach ?>
                 <td>
-                  <span class="badge bg-green"><?php echo $name_fix_kategori." = ".number_format($value_fix_kategori, 3); ?></span>
+                  <span class="badge bg-green"><?php echo $name_fix_kategori." = ".number_format($value_kecocokan_berita, 3); ?></span>
                 </td>
               </tr>
             </table>
 
-            <?php if ($value_fix_kategori <= 1): ?>
+            <?php if ($value_kecocokan_berita >= 0.5): ?>
               <p style="text-align: center">
-                <input id="hidden_value_fix_kategori" type="hidden" name="hidden_value_fix_kategori" value="<?php echo $value_fix_kategori ?>">
+                <input id="hidden_value_fix_kategori" type="hidden" name="hidden_value_fix_kategori" value="<?php echo $value_kecocokan_berita ?>">
                 <button type="button" id="show_proses2" name="show_proses" class="btn btn-success" onclick="btn_show_proses2()"><i class="fa fa-hourglass-3"></i> Lihat Detail Proses Kategorisasi CSR</button>
               </p>
             <?php endif ?>
@@ -581,6 +581,22 @@
   </div>
   </form>
 </section>
+
+<?php
+  $judul = $_POST['judul'];
+  $sumber = $_POST['sumber'];
+  $token = implode(' ',$stem_berita);
+  $kategori = ($value_kecocokan_berita >= 0.5) ? $name_fix_kategori : 'bukan berita csr';
+
+  $sql = $conn->prepare("INSERT INTO data_berita (judul, sumber, token, kategori) VALUES(:judul, :sumber, :token, :kategori)");
+  $data = Array(
+    ':judul' => $judul,
+    ':sumber' => $sumber,
+    ':token' => $token,
+    ':kategori' => $kategori
+  );
+  $sql->execute($data);
+?>
 
 <script type="text/javascript">
   var pesan = "<?php echo $name_fix_kategori; ?>";
