@@ -16,8 +16,9 @@
       <li class="header">MAIN MENU</li>
       <li><a href="?page=dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
       <li><a href="?page=input-berita"><i class="fa fa-shield"></i>Input berita</a></li>
-      <li><a href="?page=data-trainning"><i class="fa fa-check-square-o"></i>Data Trainning</a></li>
-      <li><a href="?page=manager-data"><i class="fa fa-list-alt"></i>Manager Data</a></li>
+      <li><a href="?page=data-trainning"><i class="fa fa-check-square-o"></i>Input Data Trainning</a></li>
+      <li><a href="?page=manager-data"><i class="fa fa-list-alt"></i>Manager Data Trainning</a></li>
+      <li><a href="?page=manager-data-berita"><i class="fa fa-list-alt"></i>Manager Data Berita</a></li>
 
     </ul>
   </section>

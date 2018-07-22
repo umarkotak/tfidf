@@ -10,6 +10,7 @@ if (isset($_GET['page'])) {
   else if ($page == 'data-trainning')                            { include "pages/data-trainning.php"; }
   else if ($page == 'data-trainning-edit')                       { include "pages/data-trainning-edit.php"; }
   else if ($page == 'manager-data')                              { include "pages/manager-data.php"; }
+  else if ($page == 'manager-data-berita')                              { include "pages/manager-data-berita.php"; }
 
 
   else                                                           { include "pages/notfound.php"; }
