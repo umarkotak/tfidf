@@ -46,7 +46,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Hasil Pemrosesasn Berita
+    Hasil Pemrosesan Berita
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -64,12 +64,15 @@
         </div>
 
         <div class="box-body">
-          <p id="final_p" style="text-align: center">
+          <p id="final_message" style="text-align: center">
             Berita dengan judul <small class="label bg-blue"><b><?php echo $judul; ?></b></small>
             yang diterbitkan oleh <small class="label bg-blue"><b><?php echo $sumber; ?></b></small>
             pada tahun <small class="label bg-blue"><b><?php echo $tahun; ?></b></small>
             memiliki kriteria <small class="label bg-blue"><b id="final_kriteria"><?php echo $kriteria; ?></b></small>
             <br><br>
+          </p>
+
+          <p style="text-align: center">
             <button type="button" id="show_proses" name="show_proses" class="btn btn-success" onclick="btn_show_proses()"><i class="fa fa-hourglass-3"></i> Lihat Detail Proses Pencocokan Berita</button>
           </p>
         </div>
@@ -314,6 +317,13 @@
                 <input id="hidden_value_fix_kategori" type="hidden" name="hidden_value_fix_kategori" value="<?php echo $value_kecocokan_berita ?>">
                 <button type="button" id="show_proses2" name="show_proses" class="btn btn-success" onclick="btn_show_proses2()"><i class="fa fa-hourglass-3"></i> Lihat Detail Proses Kategorisasi CSR</button>
               </p>
+            <?php else: ?>
+              <script type="text/javascript">
+                setTimeout(
+                  function() {
+                  $("#final_message").html('Bukan termasuk berita pemberdayaan perempuan');
+                  }, 1000);
+              </script>
             <?php endif ?>
           </div>
 
