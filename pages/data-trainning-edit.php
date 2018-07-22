@@ -9,7 +9,7 @@ if (isset($_GET['id'])) {
 }
 ?>
 
-<?php 
+<?php
 if (isset($_POST['btn_update'])) {
   $judul = $_POST['judul'];
   $sumber = $_POST['sumber'];
@@ -20,7 +20,7 @@ if (isset($_POST['btn_update'])) {
   $token = $_POST['token_berita'];
 
   try {
-    $sql = $conn->prepare("UPDATE data_training SET judul=:judul, sumber=:sumber, tahun=:tahun, jenis=:jenis, dokumen=:dokumen, token=:token, kategori=:kategori");
+    $sql = $conn->prepare("UPDATE data_training SET judul=:judul, sumber=:sumber, tahun=:tahun, jenis=:jenis, dokumen=:dokumen, token=:token, kategori=:kategori WHERE id=:id");
     $data = Array(
       ':judul' => $judul,
       ':sumber' => $sumber,
@@ -28,14 +28,15 @@ if (isset($_POST['btn_update'])) {
       ':jenis' => $jenis,
       ':dokumen' => $dokumen,
       ':token' => $token,
-      ':kategori' => $kategori
+      ':kategori' => $kategori,
+      ':id' => $id
     );
     $sql->execute($data);
-    
+
     $_SESSION['green-notice'] = "Data berhasil diperbaharui";
     header("location: ?page=manager-data");
   } catch (Exception $e) {
-    
+
     $_SESSION['red-notice'] = "Terjadi kesalahan " . $e->getMessage();
     header("location: ?page=manager-data");
   }
@@ -90,6 +91,7 @@ if (isset($_POST['btn_update'])) {
               <div class="form-group">
                 <label>Jenis</label>
                 <select id="jenis" name="jenis" class="form-control">
+                  <option value="<?php echo $data_training['jenis'] ?>"><?php echo $data_training['jenis'] ?></option>
                   <option value="csr">CSR</option>
                   <option value="berita">Berita</option>
                 </select>
@@ -108,6 +110,7 @@ if (isset($_POST['btn_update'])) {
                   <option value="sosial">Sosial</option>
                   <option value="publik_faisilitas">Publik Fasilitas</option>
                   <option value="pengetas_kemiskinan">Pengentas Kemiskinan</option>
+                  <option value="berita">Berita</option>
                 </select>
               </div>
             </div>

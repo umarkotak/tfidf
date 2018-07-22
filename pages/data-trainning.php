@@ -108,6 +108,7 @@ if (isset($_POST['btn_proses'])) {
                   <option value="sosial">Sosial</option>
                   <option value="publik_faisilitas">Publik Fasilitas</option>
                   <option value="pengetas_kemiskinan">Pengentas Kemiskinan</option>
+                  <option value="berita">Berita</option>
                 </select>
               </div>
             </div>
