@@ -32,9 +32,10 @@ $datas = $sql->fetchAll();
             </thead>
 
             <tbody>
+              <?php $no = 1; ?>
               <?php foreach ($datas as $data): ?>
               <tr>
-                <td><?php echo $data['id']; ?></td>
+                <td><?php echo $no ?></td>
                 <td><?php echo $data['judul']; ?></td>
                 <td><?php echo $data['sumber']; ?></td>
                 <td><?php echo $data['tahun']; ?></td>
@@ -47,6 +48,7 @@ $datas = $sql->fetchAll();
                   <a href="?action=delete-data-training&id=<?php echo $data['id']; ?>" class="btn btn-xs btn-danger" onclick="return confirm('Apakah anda yakin untuk menghapus data ini?');"><i class="fa fa-trash"></i> delete</a>
                 </td>
               </tr>
+              <?php $no++; ?>
               <?php endforeach ?>
             </tbody>
           </table>

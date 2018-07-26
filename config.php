@@ -13,3 +13,14 @@ try {
   die();
 }
 ?>
+
+<?php
+function sanitize($string) {
+  $string = str_replace(array("'",'"'), '', $string);
+  $string = str_replace(array('“','”'), '', $string);
+  $string = str_replace(')', '', $string);
+  $string = str_replace('(', '', $string);
+
+  return $string;
+}
+?>

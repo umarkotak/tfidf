@@ -24,6 +24,7 @@ $datas = $sql->fetchAll();
                 <th>Sumber</th>
                 <th>Token</th>
                 <th>Kategori</th>
+                <th>Kemiripan</th>
               </tr>
             </thead>
 
@@ -35,6 +36,7 @@ $datas = $sql->fetchAll();
                 <td><?php echo $data['sumber']; ?></td>
                 <td><?php echo $data['token']; ?></td>
                 <td><?php echo $data['kategori']; ?></td>
+                <td><?php echo $data['kemiripan']; ?></td>
               </tr>
               <?php endforeach ?>
             </tbody>

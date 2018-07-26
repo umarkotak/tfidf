@@ -5,7 +5,7 @@ if (isset($_POST['btn_proses'])) {
   $tahun = $_POST['tahun'];
   $jenis = $_POST['jenis'];
   $kategori = $_POST['kategori'];
-  $dokumen = $_POST['teks_berita'];
+  $dokumen = sanitize($_POST['teks_berita']);
 
   $myfile = fopen("temp.txt", "w") or die("Unable to open file!");
   fwrite($myfile, $dokumen);

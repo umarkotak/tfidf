@@ -3,7 +3,7 @@
   $sumber = $_POST['sumber'];
   $tahun = $_POST['tahun'];
   $teks_berita = $_POST['teks_berita'];
-  $dokumen = $teks_berita;
+  $dokumen = sanitize($teks_berita);
   $kriteria = '';
 
   $myfile = fopen("temp.txt", "w") or die("Unable to open file!");
@@ -157,6 +157,7 @@
                     <?php echo $term; ?>
                   </td>
 
+                  <!-- Untuk TF kemunculan di dokumen -->
                   <?php $hitung_awal_array = array(); ?>
                   <?php $df = 0; ?>
                   <?php $temp = array(); ?>
@@ -203,6 +204,7 @@
                     <?php endif ?>
                   </td>
 
+                  <!-- TF IDF -->
                   <?php $temp = array(); ?>
                   <?php foreach ($query_data as $key => $value): ?>
                     <td id="tfidf-w-<?php echo $key; ?>">
@@ -293,7 +295,7 @@
           </div>
 
           <div>
-            <h3>Hasil Kategori</h3>
+            <!-- <h3>Hasil Kategori</h3>
             <table class="table table-bordered">
               <tr>
                 <?php $hasil =  array(); ?>
@@ -310,7 +312,7 @@
                   <span class="badge bg-green"><?php echo $name_fix_kategori." = ".number_format($value_kecocokan_berita, 3); ?></span>
                 </td>
               </tr>
-            </table>
+            </table> -->
 
             <?php if ($value_kecocokan_berita >= 0.5): ?>
               <p style="text-align: center">
@@ -575,7 +577,7 @@
                   <td>
                     <?php $hasil[$key] = $sum_wdts[$key+1]/($root_pvs[0]*$root_pvs[$key+1]); ?>
                     <?php if($hasil[$key] > $value_fix_kategori) { $value_fix_kategori = $hasil[$key]; $name_fix_kategori = $data_training['kategori']; } ?>
-                    <span class="badge bg-light-blue"><?php echo $data_training['kategori']." = ".$hasil[$key]; ?></span>
+                    <span class="badge bg-light-blue"><?php echo $data_training['kategori']." = ".number_format($hasil[$key], 3); ?></span>
                   </td>
                 <?php endforeach ?>
                 <td>
@@ -597,13 +599,15 @@
   $sumber = $_POST['sumber'];
   $token = implode(' ',$stem_berita);
   $kategori = ($value_kecocokan_berita >= 0.5) ? $name_fix_kategori : 'bukan berita csr';
+  $kemiripan = ($value_kecocokan_berita >= 0.5) ? number_format($value_fix_kategori, 2) : 0;
 
-  $sql = $conn->prepare("INSERT INTO data_berita (judul, sumber, token, kategori) VALUES(:judul, :sumber, :token, :kategori)");
+  $sql = $conn->prepare("INSERT INTO data_berita (judul, sumber, token, kategori, kemiripan) VALUES(:judul, :sumber, :token, :kategori, :kemiripan)");
   $data = Array(
     ':judul' => $judul,
     ':sumber' => $sumber,
     ':token' => $token,
-    ':kategori' => $kategori
+    ':kategori' => $kategori,
+    ':kemiripan' => $kemiripan
   );
   $sql->execute($data);
 ?>
