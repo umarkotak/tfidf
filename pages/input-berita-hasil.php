@@ -295,7 +295,7 @@
           </div>
 
           <div>
-            <!-- <h3>Hasil Kategori</h3>
+            <h3>Hasil Kategori</h3>
             <table class="table table-bordered">
               <tr>
                 <?php $hasil =  array(); ?>
@@ -312,9 +312,9 @@
                   <span class="badge bg-green"><?php echo $name_fix_kategori." = ".number_format($value_kecocokan_berita, 3); ?></span>
                 </td>
               </tr>
-            </table> -->
+            </table> 
 
-            <?php if ($value_kecocokan_berita >= 0.5): ?>
+            <?php if ($value_kecocokan_berita >= 0.45): ?>
               <p style="text-align: center">
                 <input id="hidden_value_fix_kategori" type="hidden" name="hidden_value_fix_kategori" value="<?php echo $value_kecocokan_berita ?>">
                 <button type="button" id="show_proses2" name="show_proses" class="btn btn-success" onclick="btn_show_proses2()"><i class="fa fa-hourglass-3"></i> Lihat Detail Proses Kategorisasi CSR</button>

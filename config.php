@@ -20,6 +20,9 @@ function sanitize($string) {
   $string = str_replace(array('“','”'), '', $string);
   $string = str_replace(')', '', $string);
   $string = str_replace('(', '', $string);
+  $string = preg_replace("/[^A-Za-z ]/", '', $string);
+  $string = preg_replace("/[\r\n]/", " ", $string);
+  $string = preg_replace("#\R+#", " ", $string);
 
   return $string;
 }
