@@ -21,6 +21,7 @@ if (isset($_GET['page'])) {
   if ($action == 'post_publish_certificate')                     { include "action/post_publish_certificate.php"; }
   else if ($action == 'post_upload_certificate')                 { include "action/post_upload_certificate.php"; }
   else if ($action == 'delete-data-training')                    { include "action/get-delete-data-training.php"; }
+  else if ($action == 'delete-data-berita')                      { include "action/get-delete-data-berita.php"; }
 
 } else {
   include "pages/dashboard.php";

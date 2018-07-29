@@ -25,6 +25,7 @@ $datas = $sql->fetchAll();
                 <th>Token</th>
                 <th>Kategori</th>
                 <th>Kemiripan</th>
+                <th>Action</th>
               </tr>
             </thead>
 
@@ -37,6 +38,9 @@ $datas = $sql->fetchAll();
                 <td><?php echo $data['token']; ?></td>
                 <td><?php echo $data['kategori']; ?></td>
                 <td><?php echo $data['kemiripan']; ?></td>
+                <td>
+                  <a href="?action=delete-data-berita&id=<?php echo $data['id_berita']; ?>" class="btn btn-xs btn-danger" onclick="return confirm('Apakah anda yakin untuk menghapus data ini?');"><i class="fa fa-trash"></i> delete</a>
+                </td>
               </tr>
               <?php endforeach ?>
             </tbody>
