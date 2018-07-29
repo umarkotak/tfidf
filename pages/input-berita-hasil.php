@@ -567,7 +567,7 @@
             </table>
           </div>
 
-          <div>
+          <div class="form-group" style="overflow-x:auto;">
             <h3>Hasil Kategori</h3>
             <table class="table table-bordered">
               <tr>
