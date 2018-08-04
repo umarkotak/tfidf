@@ -41,6 +41,8 @@
     $query_data[$key] = array_count_values($value);
   }
 
+  $batas_kecocokan = 0.25;
+
 ?>
 
 <!-- Content Header (Page header) -->
@@ -314,7 +316,7 @@
               </tr>
             </table> 
 
-            <?php if ($value_kecocokan_berita >= 0.45): ?>
+            <?php if ($value_kecocokan_berita >= $batas_kecocokan): ?>
               <p style="text-align: center">
                 <input id="hidden_value_fix_kategori" type="hidden" name="hidden_value_fix_kategori" value="<?php echo $value_kecocokan_berita ?>">
                 <button type="button" id="show_proses2" name="show_proses" class="btn btn-success" onclick="btn_show_proses2()"><i class="fa fa-hourglass-3"></i> Lihat Detail Proses Kategorisasi CSR</button>
@@ -598,8 +600,8 @@
   $judul = $_POST['judul'];
   $sumber = $_POST['sumber'];
   $token = implode(' ',$stem_berita);
-  $kategori = ($value_kecocokan_berita >= 0.5) ? $name_fix_kategori : 'bukan berita csr';
-  $kemiripan = ($value_kecocokan_berita >= 0.5) ? number_format($value_fix_kategori, 2) : 0;
+  $kategori = ($value_kecocokan_berita >= $batas_kecocokan) ? $name_fix_kategori : 'bukan berita csr';
+  $kemiripan = ($value_kecocokan_berita >= $batas_kecocokan) ? number_format($value_fix_kategori, 2) : 0;
 
   $sql = $conn->prepare("INSERT INTO data_berita (judul, sumber, token, kategori, kemiripan) VALUES(:judul, :sumber, :token, :kategori, :kemiripan)");
   $data = Array(
