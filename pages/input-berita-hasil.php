@@ -338,6 +338,7 @@
 
   <?php
     $stem_data_training = Array();
+    $terms = $stem_berita;
 
     $sql = $conn->prepare("SELECT * FROM data_training WHERE jenis='csr' ORDER BY judul ASC");
     $data = Array(); $sql->execute($data);
