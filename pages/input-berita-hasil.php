@@ -195,6 +195,16 @@
 
                   <td id="ndf">
                     <?php $ndfs[$key_term] = ($df == 0) ? $ndf = 0 : $ndf = $n/$df; echo $ndf; ?>
+
+                    <?php
+                      // if ($df == 0) {
+                      //   $ndf = 0;
+                      // } else {
+                      //   $ndf = $n/$df;
+                      // }
+                      // $ndfs[$key_term] = $ndf;
+                      // echo $ndf;
+                     ?>
                   </td>
 
                   <td id="idf">
@@ -301,11 +311,13 @@
             <table class="table table-bordered">
               <tr>
                 <?php $hasil =  array(); ?>
-                <?php $name_fix_kategori = ""; $value_kecocokan_berita = 0; ?>
+                <?php $name_fix_kategori = ""; $value_kecocokan_berita = 0; $sum_nilai = 0; $jumlah_berita = 0; ?>
                 <?php foreach ($data_trainings as $key => $data_training): ?>
                   <td>
                     <?php $tmp = ($root_pvs[0]*$root_pvs[$key+1]); ?>
                     <?php $hasil[$key] = $tmp == 0 ? 0 : $sum_wdts[$key+1]/$tmp; ?>
+                    <?php $sum_nilai += $hasil[$key]; ?>
+                    <?php $jumlah_berita += 1; ?>
                     <?php if($hasil[$key] > $value_kecocokan_berita) { $value_kecocokan_berita = $hasil[$key]; $name_fix_kategori = $data_training['kategori']; } ?>
                     <span class="badge bg-light-blue"><?php echo $data_training['kategori']." = ".$hasil[$key]; ?></span>
                   </td>
@@ -313,10 +325,14 @@
                 <td>
                   <span class="badge bg-green"><?php echo $name_fix_kategori." = ".number_format($value_kecocokan_berita, 3); ?></span>
                 </td>
+                <td>
+                  <?php $rata_rata_nilai = $sum_nilai / $jumlah_berita; ?>
+                  <span class="badge bg-green">Rata - rata = <?php echo $rata_rata_nilai; ?></span>
+                </td>
               </tr>
-            </table> 
+            </table>
 
-            <?php if ($value_kecocokan_berita >= $batas_kecocokan): ?>
+            <?php if ($value_kecocokan_berita >= $rata_rata_nilai): ?>
               <p style="text-align: center">
                 <input id="hidden_value_fix_kategori" type="hidden" name="hidden_value_fix_kategori" value="<?php echo $value_kecocokan_berita ?>">
                 <button type="button" id="show_proses2" name="show_proses" class="btn btn-success" onclick="btn_show_proses2()"><i class="fa fa-hourglass-3"></i> Lihat Detail Proses Kategorisasi CSR</button>
@@ -335,6 +351,8 @@
       </div>
     </div>
   </div>
+
+  <!-- PROSES PENYOCOKAN CSR -->
 
   <?php
     $stem_data_training = Array();
@@ -601,8 +619,8 @@
   $judul = $_POST['judul'];
   $sumber = $_POST['sumber'];
   $token = implode(' ',$stem_berita);
-  $kategori = ($value_kecocokan_berita >= $batas_kecocokan) ? $name_fix_kategori : 'bukan berita csr';
-  $kemiripan = ($value_kecocokan_berita >= $batas_kecocokan) ? number_format($value_fix_kategori, 2) : 0;
+  $kategori = ($value_kecocokan_berita >= $rata_rata_nilai) ? $name_fix_kategori : 'bukan berita csr';
+  $kemiripan = ($value_kecocokan_berita >= $rata_rata_nilai) ? number_format($value_fix_kategori, 2) : 0;
 
   $sql = $conn->prepare("INSERT INTO data_berita (judul, sumber, token, kategori, kemiripan) VALUES(:judul, :sumber, :token, :kategori, :kemiripan)");
   $data = Array(
